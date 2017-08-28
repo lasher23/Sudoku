@@ -1,0 +1,38 @@
+.text-input:readonly {
+    -fx-border-color: transparent;
+}
+.text-input {
+	-fx-alignment: center;
+}
+.text-field{
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 50;
+}
+
+.card.label{
+	-fx-font-size: 32;
+}
+.cell {
+
+    /* Defines a black border around the standard color -fx-base */
+    -fx-background-color:  black, -fx-base ;
+
+    /* By default draw the base color over the whole region, so no border visible */
+    -fx-background-insets: 0, 0 ;
+
+    -fx-padding: 5px ;
+}
+
+.cell:right {
+    -fx-background-insets: 0, 0 1 0 0 ;
+}
+
+.cell:bottom {
+    -fx-background-insets: 0, 0 0 1 0 ;
+}
+
+.cell:right:bottom {
+    -fx-background-insets: 0, 0 1 1 0 ;
+}
