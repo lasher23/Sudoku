@@ -161,10 +161,15 @@ public class SudokuGrid {
 
 					@Override
 					public void handle(KeyEvent event) {
-						KeyCodeCombination combination = new KeyCodeCombination(KeyCode.Z,
+						KeyCodeCombination combinationUndo = new KeyCodeCombination(KeyCode.Z,
 								KeyCodeCombination.CONTROL_DOWN);
-						if (combination.match(event)) {
+						KeyCodeCombination combinationRedo = new KeyCodeCombination(KeyCode.Y,
+								KeyCodeCombination.CONTROL_DOWN);
+						if (combinationUndo.match(event)) {
 							undo();
+							event.consume();
+						} else if (combinationRedo.match(event)) {
+							redo();
 							event.consume();
 						}
 					}
@@ -267,9 +272,13 @@ public class SudokuGrid {
 		return difficulty;
 	}
 
-	public void undo() {
+	private void undo() {
 		changedFromHistory = true;
 		history.undo();
 		changedFromHistory = false;
+	}
+
+	private void redo() {
+		history.redo();
 	}
 }

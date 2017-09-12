@@ -249,8 +249,4 @@ public class MainApp extends Application {
 		imgAlert.setHeaderText("The QR Code of your Sudoku:");
 		imgAlert.showAndWait();
 	}
-
-	public void undo() {
-		sudokuGrid.undo();
-	}
 }
