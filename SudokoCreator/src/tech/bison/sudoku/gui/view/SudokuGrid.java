@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tech.bison.sudoku.creator.IrresolvableSudokuException;
 import tech.bison.sudoku.creator.Sudoku;
@@ -26,6 +27,7 @@ import tech.bison.sudoku.gui.MainApp;
 
 public class SudokuGrid {
 	private static final int GRID_SIZE = 9;
+	private VBox box = new VBox();
 	private GridPane gridPane = new GridPane();
 	private TextField[][] cells = new TextField[GRID_SIZE][GRID_SIZE];
 	private int[][] puzzle = new int[GRID_SIZE][GRID_SIZE];
@@ -34,6 +36,7 @@ public class SudokuGrid {
 	private MainApp main;
 	private SudokuHistory history = new SudokuHistory();
 	private boolean changedFromHistory = false;
+	private Timer timer = new Timer();
 
 	public SudokuGrid(MainApp main) {
 		this.main = main;
@@ -45,13 +48,18 @@ public class SudokuGrid {
 		return puzzle;
 	}
 
-	public GridPane createNewSudoku() {
+	public VBox createNewSudoku() {
 		if (showDifficultyDialog()) {
 			initCells();
 			addCellsToAnchorPane();
 			addSudoku();
 			printPuzzle();
-			return gridPane;
+			box.getChildren().add(gridPane);
+
+			timer.startTimer();
+			box.getChildren().add(timer);
+			box.getChildren().add(new TextField());
+			return box;
 		}
 		return null;
 	}
@@ -79,6 +87,7 @@ public class SudokuGrid {
 			return;
 		}
 		if (sudoku.isValidSolution(puzzle)) {
+			timer.stopTimer();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.getDialogPane().getStylesheets().add(ViewUtils.MATERIAL_FX_CSS);
 			alert.setHeaderText("Congratulation");

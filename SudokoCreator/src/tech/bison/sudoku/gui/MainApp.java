@@ -23,6 +23,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tech.bison.sudoku.creator.Sudoku;
@@ -63,10 +64,10 @@ public class MainApp extends Application {
 
 	public void showSudokuGrid() {
 		SudokuGrid sudokuGrid = new SudokuGrid(this);
-		GridPane pane = sudokuGrid.createNewSudoku();
-		if (pane != null) {
+		VBox box = sudokuGrid.createNewSudoku();
+		if (box != null) {
 			this.sudokuGrid = sudokuGrid;
-			rootLayout.setCenter(pane);
+			rootLayout.setCenter(box);
 		}
 	}
 
