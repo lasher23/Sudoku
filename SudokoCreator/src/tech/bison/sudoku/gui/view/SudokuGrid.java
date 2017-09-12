@@ -157,27 +157,29 @@ public class SudokuGrid {
 			for (int col = 0; col < GRID_SIZE; col++) {
 				TextField tf = new TextField();
 				addKeyListener(tf);
-				tf.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-					@Override
-					public void handle(KeyEvent event) {
-						KeyCodeCombination combinationUndo = new KeyCodeCombination(KeyCode.Z,
-								KeyCodeCombination.CONTROL_DOWN);
-						KeyCodeCombination combinationRedo = new KeyCodeCombination(KeyCode.Y,
-								KeyCodeCombination.CONTROL_DOWN);
-						if (combinationUndo.match(event)) {
-							undo();
-							event.consume();
-						} else if (combinationRedo.match(event)) {
-							redo();
-							event.consume();
-						}
-					}
-				});
+				addUndoRedoListener(tf);
 				cells[row][col] = tf;
 			}
 		}
 
+	}
+
+	private void addUndoRedoListener(TextField tf) {
+		tf.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCodeCombination combinationUndo = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.CONTROL_DOWN);
+				KeyCodeCombination combinationRedo = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.CONTROL_DOWN);
+				if (combinationUndo.match(event)) {
+					undo();
+					event.consume();
+				} else if (combinationRedo.match(event)) {
+					redo();
+					event.consume();
+				}
+			}
+		});
 	}
 
 	private void addKeyListener(TextField tf) {
