@@ -160,6 +160,7 @@ public class MainApp extends Application {
 	private boolean checkIfSudokuIsCreated() {
 		if (sudokuGrid == null) {
 			ViewUtils.errorAlert("You have to create a Sudoku first!").showAndWait();
+			showSudokuGrid();
 			return false;
 		}
 		return true;
