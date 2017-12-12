@@ -110,6 +110,7 @@ public class SudokuGrid {
 	}
 
 	public void solveAndPrint() {
+		clear();
 		readIntoPuzzle();
 		sudoku.solve();
 		puzzle = sudoku.getPuzzle();
@@ -196,12 +197,11 @@ public class SudokuGrid {
 			if (!newValue.matches("[1-9]") && !"".equals(newValue)) {
 				tf.setText(oldValue);
 			} else if (!newValue.equals(oldValue)) {
-				System.out.println(changedFromHistory);
 				if (!changedFromHistory) {
 					try {
 						history.addToHistory(new SudokuHistoryElement(tf, oldValue));
 					} catch (Exception e) {
-						System.out.println(e.getMessage());
+						e.printStackTrace();
 					}
 				}
 			}

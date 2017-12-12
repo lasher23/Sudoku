@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import ch.deletescape.primitives.arrays.PrIntArray;
 import tech.bison.sudoku.creator.Sudoku;
 
 public class ExportCSV {
@@ -19,9 +18,17 @@ public class ExportCSV {
 
   public void export() throws IOException {
     for (int[] is : sudoku.getPuzzle()) {
-      bw.write(PrIntArray.join(";", is));
+      bw.write(join(";", is));
       bw.write("\n");
     }
     bw.close();
   }
+  
+  public static String join(CharSequence delimiter, int... elements) {
+	    String[] tmp = new String[elements.length];
+	    for (int i = 0; i < tmp.length; i++) {
+	      tmp[i] = Integer.toString(elements[i]);
+	    }
+	    return String.join(delimiter, tmp);
+	}
 }
