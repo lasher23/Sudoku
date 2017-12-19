@@ -5,9 +5,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class ViewUtils {
-  public static final String MATERIAL_FX_CSS = "tech/bison/sudoku/gui/view/material-fx.css";
-  public static final String SUDOKU_CSS = "tech/bison/sudoku/gui/view/sudokulayout.css";
-  public static final Image SUDOKU_ICON_32 = new Image("tech/bison/sudoku/gui/view/SudokuIcon32.png");
+  public static final String MATERIAL_FX_CSS =  ViewUtils.class.getResource("material-fx.css").toString();
+  public static final String SUDOKU_CSS = ViewUtils.class.getResource("sudokulayout.css").toString();
+  public static final Image SUDOKU_ICON_32 = new Image(ViewUtils.class.getResource("SudokuIcon32.png").toString());
 
   public static Alert errorAlert(String contentText) {
     Alert alert = new Alert(Alert.AlertType.ERROR);

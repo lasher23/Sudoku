@@ -135,15 +135,15 @@ public class MainApp extends Application {
 
 			rootLayout.setCenter(start);
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
 	private void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+			loader.setLocation(getClass().getResource("view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
-
 			RootLayoutController controller = loader.getController();
 			controller.setMain(this);
 
@@ -154,6 +154,7 @@ public class MainApp extends Application {
 			primaryStage.show();
 
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
