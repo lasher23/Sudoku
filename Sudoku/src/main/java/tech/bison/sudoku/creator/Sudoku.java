@@ -32,12 +32,6 @@ public class Sudoku {
 
   public void solve() {
     solve(0, 0, puzzle);
-    // for (int row = 0; row < FIELD_WIDTH; ++row) {
-    // System.out.println();
-    // for (int col = 0; col < FIELD_WIDTH; ++col) {
-    // System.out.print(puzzle[row][col]);
-    // }
-    // }
   }
 
   public int[][] getPuzzle() {
