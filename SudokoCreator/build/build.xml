@@ -5,6 +5,7 @@
 			<filelist>
 				<file name="${java.home}\..\lib\ant-javafx.jar"/>
 				<file name="${java.home}\lib\jfxrt.jar"/>
+				<file name="${basedir}"/>
 			</filelist>
 		</path>
 	
@@ -22,11 +23,6 @@
 		<copy todir="externalLibs">
 			<fileset dir="C:\Users\bbzw\git\Sudoku\SudokoCreator\lib">
 				<filename name="itext5-itextpdf-5.5.12.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="C:\Users\bbzw\git\Sudoku\SudokoCreator\lib">
-				<filename name="Primitives.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -53,12 +49,12 @@
 		<mkdir dir="project" />
 		<copy todir="project">
 			<fileset dir="C:\Users\bbzw\git\Sudoku\SudokoCreator">
-				<include name="src_test/**" />
+				<include name="src/**" />
 			</fileset>
 		</copy>
 		<copy todir="project">
 			<fileset dir="C:\Users\bbzw\git\Sudoku\SudokoCreator">
-				<include name="src/**" />
+				<include name="src_test/**" />
 			</fileset>
 		</copy>
 	
@@ -78,7 +74,6 @@
 				<include name="junit.jar"/>
 				<include name="itext5-itextpdf-5.5.12.jar"/>
 				<include name="controlsfx-8.40.12.jar"/>
-				<include name="Primitives.jar"/>
 			</fileset>
 		</copy>
 	
@@ -133,12 +128,14 @@
 		<fx:resources id="appRes">
 			<fx:fileset dir="dist" includes="SudokoCreator.jar"/>
 			<fx:fileset dir="dist" includes="libs/*"/>
+		    <fx:fileset dir="dist" includes="resources/**"/>
 		</fx:resources>
 	
 		<fx:application id="fxApplication"
 			name="Sudoku"
 			mainClass="tech.bison.sudoku.gui.MainApp"
 			toolkit="fx"
+			version="1.0"
 		/>
 	
 		<mkdir dir="build/classes/META-INF" />
@@ -171,7 +168,7 @@
 			outfile="SudokoCreator" nativeBundles="exe"
 			updatemode="background" >
 	
-
+			<fx:platform />
 			<fx:info title="SudokoCreator" vendor="Nicolas Schmid"/>
 	
 			<fx:application refId="fxApplication"/>
